@@ -80,8 +80,6 @@ project-root/
 
 ## Team Members
 
-| Name | Role |
-|------|------|
-| _(add name)_ | _(add role)_ |
-| _(add name)_ | _(add role)_ |
-| _(add name)_ | _(add role)_ |
+| _Helga María Magnúsdóttir_ |
+| _Kolbrún Védís Jónsdóttir_ |
+| _Kristín Böðvarsdóttir_ |
