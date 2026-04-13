@@ -80,5 +80,7 @@ project-root/
 
 ## Team Members
 _Helga María Magnúsdóttir_
+
 _Kolbrún Védís Jónsdóttir_
+
 _Kristín Böðvarsdóttir_
