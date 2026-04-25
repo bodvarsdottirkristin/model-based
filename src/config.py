@@ -6,6 +6,7 @@ class Config:
     random_seed = 42
     n_steps = 3000
     lr = 0.005
-    posterior_samples = 1000
+    num_samples = 1000
+    gap = 0.05
 
 cfg = Config()

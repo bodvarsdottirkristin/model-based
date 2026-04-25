@@ -13,8 +13,11 @@ import numpy as np
 import arviz as az
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 
-if TYPE_CHECKING:
-    import pandas as pd
+import pandas as pd
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parents[1]
+RESULTS_PATH = BASE_DIR / "results" / "model_results.csv"
 
 
 def rmse(y_true: np.ndarray, y_pred: np.ndarray) -> float:
@@ -33,7 +36,6 @@ def rmse(y_true: np.ndarray, y_pred: np.ndarray) -> float:
         RMSE value.
     """
     return float(np.sqrt(mean_squared_error(y_true, y_pred)))
-
 
 def mae(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     """Compute Mean Absolute Error.
@@ -140,3 +142,45 @@ def compare_models(traces: dict) -> "pd.DataFrame":
         ArviZ model-comparison DataFrame sorted by LOO score.
     """
     return az.compare(traces)
+
+
+# -------------
+
+def log_results(model_name, corr, mae, rmse, r2):
+    """Function that logs model resutls in a csv file results/model_results.csv.
+        """
+    new_row = pd.DataFrame([{
+        "model": model_name,
+        "corr": "" if np.isnan(corr) else round(corr, 3),
+        "mae": round(mae, 3),
+        "rmse": round(rmse, 3),
+        "r2": round(r2, 3)
+    }])
+
+    if RESULTS_PATH.exists():
+        df = pd.read_csv(RESULTS_PATH)
+
+        df = df[df["model"] != model_name]
+        df = pd.concat([df, new_row], ignore_index=True)
+    else:
+        df = new_row
+
+    df.to_csv(RESULTS_PATH, index=False)
+    
+def compute_error(y_true, y_pred):
+    """Function used to compute the error of the prediction
+    """
+    mae = np.mean(np.abs(y_true-y_pred))
+    rmse = np.sqrt(np.mean((y_true-y_pred)**2))
+
+    denominator = np.sum((y_true-np.mean(y_true))**2)
+    r2 = 1 - np.sum((y_true-y_pred)**2)/denominator
+
+    # undefined for constant predictions
+    if np.isclose(np.std(y_pred),0):
+        corr = np.nan
+    else:
+        corr = np.corrcoef(y_true,y_pred)[0,1]
+
+    return corr, mae, rmse, r2
+
