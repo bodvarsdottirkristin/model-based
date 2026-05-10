@@ -54,6 +54,8 @@ Thumbs.db
 # ------------------------------------------------------------------
 data/raw/*
 data/processed/*
+
+
 # Keep the directory placeholders
 !data/raw/.gitkeep
 !data/processed/.gitkeep

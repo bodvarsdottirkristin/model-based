@@ -1,0 +1,65 @@
+# ------------------------------------------------------------------
+# Python
+# ------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+.Python
+pip-wheel-metadata/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# ------------------------------------------------------------------
+# Jupyter
+# ------------------------------------------------------------------
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# ------------------------------------------------------------------
+# Distribution / packaging
+# ------------------------------------------------------------------
+*.dist-info/
+MANIFEST
+
+# ------------------------------------------------------------------
+# Testing
+# ------------------------------------------------------------------
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# ------------------------------------------------------------------
+# IDE / editor
+# ------------------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+*.DS_Store
+Thumbs.db
+
+# ------------------------------------------------------------------
+# Project-specific
+# ------------------------------------------------------------------
+data/raw/*
+data/processed/*
+
+final_sub/data/raw/*
+final_sub/data/processed/*
+# Keep the directory placeholders
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+results/figures/*
+!results/figures/.gitkeep
